@@ -247,6 +247,7 @@ final class IGStoryPreviewCell: UICollectionViewCell, UIScrollViewDelegate {
     }
     
     private func startRequest(snapView: UIImageView, with url: String) {
+        snapView.contentMode = .scaleAspectFill
         snapView.setImage(url: url, style: .squared) { result in
             DispatchQueue.main.async { [weak self] in
                 guard let strongSelf = self else { return}

@@ -31,6 +31,7 @@ final class IGStoryPreviewHeaderView: UIView {
     fileprivate var progressView: UIView?
     internal let snaperImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1.0
@@ -58,7 +59,7 @@ final class IGStoryPreviewHeaderView: UIView {
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "ic_close"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "icp_close"), for: .normal)
         button.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
         return button
     }()
