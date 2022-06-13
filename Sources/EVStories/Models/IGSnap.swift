@@ -45,7 +45,7 @@ public struct IGSnap: Codable {
         self.id = id
         self.mediaType = mediaType
         self.url = url
-        self.isViewed = url        
+        self.isViewed = isViewed
     }
     
     var isDeleted: Bool {
