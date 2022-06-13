@@ -43,7 +43,7 @@ public struct IGStory: Codable {
         self.expiresAt = expiresAt
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        self.snaps: = snaps
+        self.snaps = snaps
         self.thumbnailUrl = thumbnailUrl
         self.title = title
     }
