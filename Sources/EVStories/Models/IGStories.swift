@@ -11,6 +11,10 @@ import Foundation
 public struct IGStories: Codable {
     public let stories: [IGStory]
     
+    public init(stories: [IGStory]) {
+        self.stories = stories
+    }
+    
     public func copy() throws -> IGStories {
         let data = try JSONEncoder().encode(self)
         let copy = try JSONDecoder().decode(IGStories.self, from: data)

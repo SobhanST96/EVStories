@@ -37,6 +37,17 @@ public struct IGSnap: Codable {
         }
     }
     
+    public init(id: String,
+                mediaType: String,
+                url: String,
+                isViewed: Bool) {
+        
+        self.id = id
+        self.mediaType = mediaType
+        self.url = url
+        self.isViewed = url        
+    }
+    
     var isDeleted: Bool {
         set{
             UserDefaults.standard.set(newValue, forKey: id)

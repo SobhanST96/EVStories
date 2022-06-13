@@ -31,6 +31,23 @@ public struct IGStory: Codable {
     public var isCompletelyVisible = false
     public var isCancelledAbruptly = false
     
+    public init(id: String,
+                expiresAt: String,
+                createdAt: String,
+                updatedAt: String,
+                snaps: [IGSnap],
+                thumbnailUrl: String,
+                title: String) {
+        
+        self.id = id
+        self.expiresAt = expiresAt
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.snaps: = snaps
+        self.thumbnailUrl = thumbnailUrl
+        self.title = title
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case expiresAt
