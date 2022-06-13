@@ -13,11 +13,17 @@ import UIKit
  While Snap.done->Next.snap(continues)->done
  then Story Completed
  */
+public protocol IGStoryPreviewControllerDelegate: AnyObject {
+    func didWatchSnap(storyId: String, snapId: String)
+}
+
 public final class IGStoryPreviewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: - Private Vars
     private var _view: IGStoryPreviewView!
     private var viewModel: IGStoryPreviewModel?
+    
+    public weak var delegate: IGStoryPreviewControllerDelegate?
     
     private(set) var stories: [IGStory]
     /** This index will tell you which Story, user has picked*/
@@ -119,7 +125,12 @@ public final class IGStoryPreviewController: UIViewController, UIGestureRecogniz
         isTransitioning = true
         _view.snapsCollectionView.collectionViewLayout.invalidateLayout()
     }
-    public init(layout:IGLayoutType = .cubic,stories: [IGStory],handPickedStoryIndex: Int, handPickedSnapIndex: Int = 0) {
+    public init(layout:IGLayoutType = .cubic,
+                stories: [IGStory],
+                handPickedStoryIndex: Int,
+                handPickedSnapIndex: Int = 0,
+                delegate: IGStoryPreviewControllerDelegate?) {
+        self.delegate = delegate
         self.layoutType = layout
         self.stories = stories
         self.handPickedStoryIndex = handPickedStoryIndex
@@ -335,5 +346,13 @@ extension IGStoryPreviewController: StoryPreviewProtocol {
     }
     func didTapCloseButton() {
         self.dismiss(animated: true, completion:nil)
+    }
+    
+    func didWatchSnap(storyId: String?, snapId: String?) {
+        guard let storyId = storyId, let snapId = snapId else {
+            return
+        }
+
+        delegate?.didWatchSnap(storyId: storyId, snapId: snapId)
     }
 }

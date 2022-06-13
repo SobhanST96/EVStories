@@ -13,6 +13,7 @@ protocol StoryPreviewProtocol: AnyObject {
     func didCompletePreview()
     func moveToPreviousStory()
     func didTapCloseButton()
+    func didWatchSnap(storyId: String?, snapId: String?)
 }
 enum SnapMovementDirectionState {
     case forward
@@ -470,10 +471,11 @@ final class IGStoryPreviewCell: UICollectionViewCell, UIScrollViewDelegate {
             progressView.snapIndex = snapIndex
             DispatchQueue.main.async {
                 if type == .image {
-                    progressView.start(with: 5.0, holderView: holderView, completion: {(identifier, snapIndex, isCancelledAbruptly) in
+                    progressView.start(with: 5.0, holderView: holderView, completion: {[weak self] (identifier, snapIndex, isCancelledAbruptly) in
+                        self?.delegate?.didWatchSnap(storyId: self?.story?.id, snapId: self?.story?.snaps[snapIndex].id)
                         print("Completed snapindex: \(snapIndex)")
                         if isCancelledAbruptly == false {
-                            self.didCompleteProgress()
+                            self?.didCompleteProgress()
                         }
                     })
                 }else {
