@@ -137,7 +137,8 @@ final class IGStoryPreviewHeaderView: UIView {
         NSLayoutConstraint.activate([
             snaperNameLabel.igLeftAnchor.constraint(equalTo: detailView.igLeftAnchor),
             lastUpdatedLabel.igLeftAnchor.constraint(equalTo: snaperNameLabel.igRightAnchor, constant: 10.0),
-            snaperNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
+            snaperNameLabel.igRightAnchor.constraint(equalTo: detailView.igRightAnchor),
+//            snaperNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
             snaperNameLabel.igCenterYAnchor.constraint(equalTo: detailView.igCenterYAnchor)
             ])
         
